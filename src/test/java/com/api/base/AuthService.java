@@ -1,6 +1,9 @@
 package com.api.base;
 
+import java.util.HashMap;
+
 import com.api.models.LoginRequest;
+import com.api.models.SignUpRequest;
 
 import io.restassured.response.Response;
 
@@ -9,6 +12,16 @@ public class AuthService extends BaseService {
 	
 	public Response login(LoginRequest payload) {
 		return postRequest(payload, BASE_PATH+"login");
+	}
+	
+	public Response signUp(SignUpRequest payload) {
+		return postRequest(payload,BASE_PATH+"signup");
+	}
+	
+	public Response forgotPassword(String emailAddress) {
+		HashMap<String, String>payload= new HashMap<>();
+		payload.put(emailAddress, emailAddress);
+		return postRequest(payload,BASE_PATH+"forgot-password");
 	}
 
 }
