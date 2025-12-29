@@ -35,10 +35,3 @@ jobs:
         name: surefire-reports
         path: target/surefire-reports/
 
-    - name: Publish TestNG Results
-      if: always()
-      uses: dorny/test-reporter@v1
-      with:
-        name: TestNG Results
-        path: target/surefire-reports/testng-results.xml
-        reporter: java-junit
