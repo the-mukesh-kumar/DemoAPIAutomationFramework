@@ -9,6 +9,7 @@ import com.api.models.LoginRequest;
 import com.api.models.response.LoginResponse;
 import com.api.models.response.ProfileRequest;
 import com.api.models.response.UserProfileResponse;
+import com.api.utils.ConfigReader;
 
 import io.restassured.response.Response;
 
@@ -18,7 +19,7 @@ public class UpdateProfileTest {
 	public void updatePofileTest() {
 
 		AuthService authService = new AuthService();
-		Response response = authService.login(new LoginRequest("themukesh", "12345678"));
+		Response response = authService.login(new LoginRequest(ConfigReader.get("username"), ConfigReader.get("password")));
 		LoginResponse loginResponse = response.as(LoginResponse.class);
 		System.out.println(response.asPrettyString());
 		

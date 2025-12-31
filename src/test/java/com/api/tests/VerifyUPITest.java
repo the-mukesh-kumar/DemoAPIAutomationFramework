@@ -9,6 +9,7 @@ import com.api.models.LoginRequest;
 import com.api.models.VerifyUpiRequest;
 import com.api.models.response.LoginResponse;
 import com.api.models.response.VerifyUPIResponse;
+import com.api.utils.ConfigReader;
 
 import io.restassured.response.Response;
 
@@ -19,14 +20,14 @@ public class VerifyUPITest {
 	public void verifyUPITest() {
 		
 		AuthService authService = new AuthService();
-		Response response = authService.login(new LoginRequest("themukesh", "12345678"));
+		Response response = authService.login(new LoginRequest(ConfigReader.get("username"), ConfigReader.get("password")));
 		LoginResponse loginResponse = response.as(LoginResponse.class);
 	
 		
 		 VerifyUpiRequest verifyUpiRequest = new VerifyUpiRequest("test@okhdfcbank");
 
 		    UPIController upiController = new UPIController();
-		    response = upiController.postVerify(loginResponse.getToken(), verifyUpiRequest);
+		    response = upiController.verify(loginResponse.getToken(), verifyUpiRequest);
 
 		 VerifyUPIResponse verifyUPIResponse = response.as(VerifyUPIResponse.class);
 		 Assert.assertEquals(response.getStatusCode(), 200);

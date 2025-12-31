@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import com.api.base.AuthService;
 import com.api.models.SignUpRequest;
+import com.api.utils.RandomDataGenerator;
 
 import io.restassured.response.Response;
 
@@ -14,8 +15,9 @@ public class AccountCreationTest {
 	
 	@Test(description="verify create user is working")
 	public void createAccountTest() {
+		
 		SignUpRequest signUpRequest=new  SignUpRequest.Builder()
-		.username("testmukesh123")
+		.username(RandomDataGenerator.randomUserName())
 		.firstName("mukesh")
 		.lastName("test")
 		.password("12345678")

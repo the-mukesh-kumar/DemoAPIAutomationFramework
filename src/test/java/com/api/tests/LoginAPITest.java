@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import com.api.base.AuthService;
 import com.api.models.LoginRequest;
 import com.api.models.response.LoginResponse;
+import com.api.utils.ConfigReader;
 
 import io.restassured.response.Response;
 @Listeners(com.api.listenres.TestListener.class)
@@ -15,7 +16,7 @@ public class LoginAPITest {
 	@Test(description = "verify login api is working")
 	public void loginTest() {
 
-		LoginRequest loginRequest = new LoginRequest("themukesh", "12345678");
+		LoginRequest loginRequest = new LoginRequest(ConfigReader.get("username"), ConfigReader.get("password"));
 		AuthService authService = new AuthService();
 		Response response = authService.login(loginRequest);
 
