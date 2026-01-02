@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.*;
 
 import com.api.filters.LoggingFilter;
 import com.api.models.LoginRequest;
+import com.api.utils.ConfigReader;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -16,7 +17,7 @@ public class BaseService {
         RestAssured.filters(new LoggingFilter());
     }
 	
-	private static final String BASE_URL ="http://64.227.160.186:8080";
+	private static final String BASE_URL =ConfigReader.get("baseUrl");
 	private RequestSpecification requestSpecification;
 	
 	public BaseService() {
